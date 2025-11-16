@@ -5,42 +5,25 @@
 @layer base {
   :root {
     --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-geist: 'Geist', system-ui, sans-serif;
-    --font-geist-mono: 'Geist Mono', monospace;
-    --font-mona: 'Mona Sans', system-ui, sans-serif;
-    --font-ibm-plex: 'IBM Plex Sans', system-ui, sans-serif;
-    --font-manrope: 'Manrope', system-ui, sans-serif;
   }
-
-  html {
-    font-family: var(--font-sans);
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-
-  body {
-    @apply antialiased;
-  }
+  html { font-family: var(--font-sans); font-feature-settings: "rlig" 1, "calt" 1; font-size: 18px; }
+  body { @apply antialiased bg-white text-black; }
 }
 
-/* Custom utility classes for shadcn/ui patterns */
-@layer utilities {
-  .animate-in {
-    animation-name: animateIn;
-    animation-duration: 350ms;
-    --tw-enter-opacity: initial;
-    --tw-enter-scale: initial;
-    --tw-enter-rotate: initial;
-    --tw-enter-translate-x: initial;
-    --tw-enter-translate-y: initial;
-  }
+/* Fade-in al scroll */
+.fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
 
-  .animate-out {
-    animation-name: animateOut;
-    animation-duration: 350ms;
-    --tw-exit-opacity: initial;
-    --tw-exit-scale: initial;
-    --tw-exit-rotate: initial;
-    --tw-exit-translate-x: initial;
-    --tw-exit-translate-y: initial;
-  }
-}
+/* Avatar flotante */
+@keyframes floating { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-20px);} }
+
+/* Rotating border */
+@keyframes rotate { to { transform: rotate(360deg);} }
+
+/* Glassmorphism */
+.glass-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.08); border-radius: 20px; transition: all 0.3s; }
+.glass-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,184,212,0.3); }
+
+/* CTA glow */
+.cta-primary { background: linear-gradient(135deg, #00B8D4, #0EA5E9); box-shadow: 0 0 20px rgba(0,184,212,0.5); transition: all 0.3s; }
+.cta-primary:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0,184,212,0.8); }
